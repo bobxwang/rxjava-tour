@@ -1,6 +1,7 @@
 package com.bob.rx2java;
 
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -44,7 +45,7 @@ public class TwoLuncher {
                 .parallel()
                 .runOn(Schedulers.computation())
                 .map(w -> {
-                    System.out.println(Thread.currentThread().getName());
+                    System.out.println(Thread.currentThread().getName() + " - " + w);
                     return w * w;
                 })
                 .sequential()
@@ -52,7 +53,8 @@ public class TwoLuncher {
                     System.out.println(Thread.currentThread().getName());
                     System.out.println(v);
                 });
-    }
 
+        Maybe.just(1).map(x -> x + 1).filter(v -> v == 2).defaultIfEmpty(4).test().assertResult(2);
+    }
 
 }

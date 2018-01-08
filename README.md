@@ -1,12 +1,19 @@
-#### subject
-> is an magic object,it can be an Observable, it also can be an Observer
+函数响应式编程在java语言上的实现,参考[Reactive Extensions For .NET](https://github.com/Reactive-Extensions),异步处理数据流.它以数据流为核心,处理数据输入,处理及输出.不同于以往的**命令式程序**.
+
+#### Subject
+> is an magic object,it extend an Observable(订阅源) and implements an Observer(观察者)
 * it has four son :
     * PublishSubject 一个基础子类
     * BehaviorSubject 向订阅者发送截至订阅前最新的一个数据对象(或初始值),然后正常发送订阅后的数据流
     * ReplaySubject 缓存它所订阅的所有数据，向任意一个订阅它的观察者重发
     * AsyncSubject 只会发布最后一个数据给已经订阅的每一个观察者
+    * SerializedSubject 
+    
+#### Subscriber 
+> 是一种特殊的观察者, 可以取消订阅被观察者, implements the Subscription(取消订阅)
 
-#### Schedulers
+#### Scheduler
+> 调度器, is an object that schedules units of work, using **Schedulers** factory method 
 
     * io --> 专用于I/O操作，不是Rx的默认方法
     * computation --> 计算工作默认的调度器，与I/O无关，是buffer,debounce,delay,interval,sample,skip默认
@@ -14,7 +21,7 @@
     * newThread
     * trampoline --> 当我们想在当前线程执行一个任务，但不是立即，可以用此将其入队，是repeat,retry方法默认调度器
     
-#### others 
+#### Others 
 
     /**
      * we can using Observable.empty, never, throw to constructor an Observable
@@ -24,5 +31,5 @@
      * timeout() -> 限时，在指定时间间隔 Observable 不发射值的话，就会触发 onError()函数
      * debounce() -> 过滤发射速率过快的数据，即：在一个时间间隔过去之后，仍然没有发射的话，则发射最后的那个
      *
-     * concatMap解决了flatMap的交叉问题
+     * concatMap解决了flatMap的交叉问题(即传入的顺序跟出来的顺序可能不一致)
      */
