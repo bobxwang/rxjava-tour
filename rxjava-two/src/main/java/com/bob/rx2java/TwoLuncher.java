@@ -11,7 +11,11 @@ public class TwoLuncher {
 
     public static void main(String[] args) {
 
-        Flowable.just("Hello world").subscribe(System.out::println);
+        Flowable.just(1, 2, 3, 4).subscribeOn(Schedulers.io()).observeOn(Schedulers.newThread())
+                .map(s -> {
+                    System.out.println(Thread.currentThread().getName() + " - " + s);
+                    return s + "u";
+                }).subscribe(s -> System.out.println(Thread.currentThread().getName() + " -- " + s));
 
         Flowable.range(1, 10)
                 .observeOn(Schedulers.computation())
