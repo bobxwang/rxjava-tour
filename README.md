@@ -1,4 +1,4 @@
-函数响应式编程在java语言上的实现,参考[Reactive Extensions For .NET](https://github.com/Reactive-Extensions),异步处理数据流.不同于以往的**命令式程序**,它以数据流为核心,处理数据输入,处理及输出.是一个使用可观测的序列来组成异步,基于事件的程序的库
+函数响应式编程在java语言上的实现,参考[Reactive Extensions For .NET](https://github.com/Reactive-Extensions),异步处理数据流.不同于以往的**命令式程序**,它以数据流为核心,处理数据输入,处理及输出.是一个使用可观测的序列来组成异步,由数据进行程序的驱动
 
 #### Subject
 > is an magic object,it extend an Observable(订阅源) and implements an Observer(观察者)
@@ -19,12 +19,14 @@
 >
 > observeOn：指定Subscriber所运行在的线程,或者叫做事件消费的线程,可以多次调用 
 
-
     * io --> 专用于I/O操作，不是Rx的默认方法
     * computation --> 计算工作默认的调度器，与I/O无关，是buffer,debounce,delay,interval,sample,skip默认
     * immediate --> 立即在当前线程执行工作，是timeout,timeInterval及timestamp默认
     * newThread
     * trampoline --> 当我们想在当前线程执行一个任务，但不是立即，可以用此将其入队，是repeat,retry方法默认调度器
+    
+#### 线程模型
+> onNext 是顺序执行的,不会同时由多个线程并发执行 
     
 #### Others 
 
