@@ -1,4 +1,8 @@
-函数响应式编程在java语言上的实现,参考[Reactive Extensions For .NET](https://github.com/Reactive-Extensions),异步处理数据流.不同于以往的**命令式程序**,它以数据流为核心,处理数据输入,处理及输出.是一个使用可观测的序列来组成异步,由数据进行程序的驱动
+* 负压
+> 反应式流中第一个重要概念是负压（backpressure）。在基本的消息推送模式中，当消息发布者产生数据的速度过快时，会使得消息订阅者的处理速度无法跟上产生的速度，从而给订阅者造成很大的压力。当压力过大时，有可能造成订阅者本身的奔溃，所产生的级联效应甚至可能造成整个系统的瘫痪。负压的作用在于提供一种从订阅者到生产者的反馈渠道。订阅者可以通过 request()方法来声明其一次所能处理的消息数量，而生产者就只会产生相应数量的消息，直到下一次 request()方法调用。这实际上变成了推拉结合的模式。
+
+* RxJava
+> 响应式编程在java语言上的实现,参考[Reactive Extensions For .NET](https://github.com/Reactive-Extensions),异步处理数据流.不同于以往的**命令式程序**,它以数据流为核心,处理数据输入,处理及输出.是一个使>用可观测的序列来组成异步,由数据进行程序的驱动
 
 #### Subject
 > is an magic object,it extend an Observable(订阅源) and implements an Observer(观察者)
